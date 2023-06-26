@@ -16,3 +16,7 @@ app.listen(PORT, function (err) {
   if (err) console.log(err);
   console.log(`Server listening on PORT: ${PORT} `);
 });
+
+// blogsam
+// nHtlRYeaoql4Xywc
+// mongodb+srv://blogsam:nHtlRYeaoql4Xywc@cluster0.qan7rtv.mongodb.net/?retryWrites=true&w=majority
