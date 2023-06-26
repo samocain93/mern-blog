@@ -2,7 +2,6 @@ body {
   color: #222;
   font-family: 'Roboto', sans-serif;
   background-color: rgb(45, 139, 183);
-
 }
 
 img {
@@ -63,10 +62,46 @@ header nav {
 
 .author {
   color: #333;
-
 }
 
 .summary {
   margin: 10px 0;
   line-height: 1.4rem;
+}
+
+.login,
+.register {
+  margin: 10px auto;
+  max-width: 400px;
+}
+
+input {
+  display: block;
+  margin-bottom: 5px;
+  width: 100%;
+  padding: 5px;
+  border: 0;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  font-family: 'Roboto', sans-serif;
+
+}
+
+input::placeholder {
+  font-family: 'Roboto', sans-serif;
+
+}
+
+button {
+  font-family: 'Roboto', sans-serif;
+  padding: 10px;
+  border-radius: 5px;
+  border: 0;
+  background-color: rgb(192, 191, 191);
+  color: #333;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #ddd;
 }
