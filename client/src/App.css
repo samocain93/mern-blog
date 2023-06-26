@@ -1,3 +1,7 @@
+* {
+  box-sizing: border-box;
+}
+
 body {
   color: #222;
   font-family: 'Roboto', sans-serif;
@@ -37,6 +41,17 @@ header a.logo {
 header nav {
   display: flex;
   gap: 15px;
+}
+
+.link {
+  background-color: rgb(238, 232, 232);
+  padding: 7px;
+  border-radius: 10px;
+}
+
+.link:hover {
+  cursor: pointer;
+  background-color: rgb(198, 193, 193);
 }
 
 .post {
@@ -79,17 +94,22 @@ input {
   display: block;
   margin-bottom: 5px;
   width: 100%;
-  padding: 5px;
-  border: 0;
+  padding: 10px 7px;
+  border: 3px solid #ddd;
+  border-radius: 5px;
   background-color: #fff;
   border: 1px solid #ddd;
   font-family: 'Roboto', sans-serif;
+}
 
+input:focus {
+  outline-color: rgb(45, 139, 183);
+  outline-style: solid;
+  box-shadow: 0 0 0 2px #eee;
 }
 
 input::placeholder {
   font-family: 'Roboto', sans-serif;
-
 }
 
 button {
@@ -97,11 +117,19 @@ button {
   padding: 10px;
   border-radius: 5px;
   border: 0;
-  background-color: rgb(192, 191, 191);
+  background-color: rgb(238, 232, 232);
+
   color: #333;
   cursor: pointer;
+  display: block;
+  width: 100%;
 }
 
 button:hover {
-  background-color: #ddd;
+  background-color: rgb(198, 193, 193);
+}
+
+
+form h1 {
+  text-align: center;
 }
