@@ -30,6 +30,20 @@ app.post('/register', async (req, res) => {
   }
 });
 
+
+app.post('/login', async (req, res) => {
+    const { username, password } = req.body;
+
+    const user = await User.findOne({ username })
+    const matching = bcrypt.compareSync(password, user.password)
+    // console.log(user)
+    console.log(matching)
+    res.json(matching)
+})
+
+
+
+
 app.listen(PORT, function (err) {
   if (err) console.log(err);
   console.log(`Server listening on PORT: ${PORT} `);
