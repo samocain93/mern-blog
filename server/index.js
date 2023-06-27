@@ -37,8 +37,8 @@ app.post('/login', async (req, res) => {
     const user = await User.findOne({ username })
     const matching = bcrypt.compareSync(password, user.password)
     // console.log(user)
-    console.log(matching)
-    res.json(matching)
+   
+    matching ? console.log('user match successful') : res.status(400).json('wrong credentials')
 })
 
 
