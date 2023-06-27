@@ -7,14 +7,19 @@ export default function RegisterPage() {
   async function handleRegister(e) {
     e.preventDefault();
 
-    await fetch('http://localhost:4000/register', {
+    const response = await fetch('http://localhost:4000/register', {
       method: 'POST',
       body: JSON.stringify({ username, password }),
       headers: {
         'Content-Type': 'application/json',
       },
     });
-  }
+    if (response.ok === false) {
+        alert('Registration failed. Please try a different username or password.')
+    } else {
+        alert('New user registration successful')
+    }
+}
 
   return (
     <form className='register' onSubmit={handleRegister}>
