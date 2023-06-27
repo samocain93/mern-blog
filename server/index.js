@@ -3,7 +3,8 @@ const cors = require('cors');
 const app = express();
 const User = require('./models/User');
 const mongoose = require('mongoose');
-const bcrypt = require('bcrypt')
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 require('dotenv').config();
 const PORT = process.env.PORT;
 
@@ -20,29 +21,33 @@ app.post('/register', async (req, res) => {
   try {
     const newUser = await User.create({
       username,
-      password:bcrypt.hashSync(password, salt),
+      password: bcrypt.hashSync(password, salt),
     });
 
     res.json(newUser);
   } catch (error) {
-    console.log(error)
-    res.status(400).json(error)
+    console.log(error);
+    res.status(400).json(error);
   }
 });
 
-
 app.post('/login', async (req, res) => {
-    const { username, password } = req.body;
+  const { username, password } = req.body;
 
-    const user = await User.findOne({ username })
-    const matching = bcrypt.compareSync(password, user.password)
-    // console.log(user)
-   
-    matching ? console.log('user match successful') : res.status(400).json('wrong credentials')
-})
+  const user = await User.findOne({ username });
+  const matching = bcrypt.compareSync(password, user.password);
+  // console.log(user)
 
-
-
+  if (matching) {
+    // logged in and redirect
+  } else {
+    res
+      .status(400)
+      .json(
+        'Login attempt failed. Please try a different username or password.'
+      );
+  }
+});
 
 app.listen(PORT, function (err) {
   if (err) console.log(err);
