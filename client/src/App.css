@@ -130,6 +130,13 @@ button:hover {
 }
 
 
-form h1 {
+form.login h1,
+form.register h1 {
   text-align: center;
+}
+
+.create-btn {
+  margin-top: 7px;
+  padding: 10px;
+  background-color: #ddd;
 }
