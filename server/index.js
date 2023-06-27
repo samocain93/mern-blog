@@ -67,6 +67,10 @@ app.get('/profile', (req, res) => {
   });
 });
 
+app.post('/logout', (req, res) => {
+  res.cookie('token', '').json('ok');
+});
+
 app.listen(PORT, function (err) {
   if (err) console.log(err);
   console.log(`Server listening on PORT: ${PORT} `);
