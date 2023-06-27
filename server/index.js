@@ -6,12 +6,15 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
+const cookieParser = require('cookie-parser');
 const PORT = process.env.PORT;
 
 const salt = bcrypt.genSaltSync(10);
+const secret = 'secret';
 
-app.use(cors());
+app.use(cors({ credentials: true, origin: 'http://localhost:3000' }));
 app.use(express.json());
+app.use(cookieParser());
 
 mongoose.connect(process.env.MONGO_URI);
 
@@ -40,6 +43,13 @@ app.post('/login', async (req, res) => {
 
   if (matching) {
     // logged in and redirect
+    jwt.sign({ username, id: user._id }, secret, {}, (err, token) => {
+      if (err) throw err;
+      res.cookie('token', token).json({
+        id: user._id,
+        username,
+      });
+    });
   } else {
     res
       .status(400)
@@ -47,6 +57,14 @@ app.post('/login', async (req, res) => {
         'Login attempt failed. Please try a different username or password.'
       );
   }
+});
+
+app.get('/profile', (req, res) => {
+  const { token } = req.cookies;
+  jwt.verify(token, secret, {}, (err, info) => {
+    if (err) throw err;
+    res.json(info);
+  });
 });
 
 app.listen(PORT, function (err) {
