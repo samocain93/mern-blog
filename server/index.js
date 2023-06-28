@@ -4,10 +4,13 @@ const app = express();
 const User = require('./models/User');
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
+const multer = require('multer');
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
 const cookieParser = require('cookie-parser');
 const PORT = process.env.PORT;
+
+const uploadMiddleware = multer({ dest: 'uploads/' });
 
 const salt = bcrypt.genSaltSync(10);
 const secret = 'secret';
@@ -70,6 +73,8 @@ app.get('/profile', (req, res) => {
 app.post('/logout', (req, res) => {
   res.cookie('token', '').json('ok');
 });
+
+app.post('/post', uploadMiddleware.single('file'), (req, res) => {});
 
 app.listen(PORT, function (err) {
   if (err) console.log(err);
