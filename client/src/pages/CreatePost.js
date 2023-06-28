@@ -56,6 +56,7 @@ export default function CreatePost() {
     });
     if (response.ok) {
       setRedirect(true);
+      alert('New post successful! You will now be returned to the home page.')
     }
   }
 

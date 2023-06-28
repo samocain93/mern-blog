@@ -2,7 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const app = express();
 const User = require('./models/User');
-const Post = require('./models/Post')
+const Post = require('./models/Post');
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const multer = require('multer');
@@ -85,8 +85,16 @@ app.post('/post', uploadMiddleware.single('file'), async (req, res) => {
     newPath = path + '.' + ext;
     fs.renameSync(path, newPath);
 
+    const { title, summary, content } = req.body;
 
-    res.json({ ext })
+    const newPost = await Post.create({
+      title,
+      summary,
+      content,
+      image: newPath,
+    });
+
+    res.json(newPost);
   }
 });
 
