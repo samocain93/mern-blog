@@ -85,16 +85,20 @@ app.post('/post', uploadMiddleware.single('file'), async (req, res) => {
     newPath = path + '.' + ext;
     fs.renameSync(path, newPath);
 
-    const { title, summary, content } = req.body;
-
-    const newPost = await Post.create({
-      title,
-      summary,
-      content,
-      image: newPath,
+    const { token } = req.cookies;
+    jwt.verify(token, secret, {}, async (err, info) => {
+      if (err) throw err;
+      // res.json(info);
+      const { title, summary, content } = req.body;
+      const newPost = await Post.create({
+        title,
+        summary,
+        content,
+        image: newPath,
+        author: info.id,
+      });
+      res.json(newPost);
     });
-
-    res.json(newPost);
   }
 });
 
