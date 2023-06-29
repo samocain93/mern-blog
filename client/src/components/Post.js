@@ -1,4 +1,4 @@
-export default function Post() {
+export default function Post({ title, summary, content, image, createdAt}) {
   return (
     <div className='post'>
       <div className='image'>
@@ -10,20 +10,14 @@ export default function Post() {
 
       <div className='content'>
         <h2>
-          OceanGate fires a whistleblower, hackers threaten to leak Reddit data,
-          and Marvel embraces AI art
+       {title}
         </h2>
         <div className='info'>
           <a className='author'>Sam O'Cain</a>
-          <time>2023-06-23 9:47am</time>
+          <time>{createdAt}</time>
         </div>
         <p className='summary'>
-          OceanGate fired a whistleblower: The director of marine operations at
-          OceanGate, the company whose submersible went missing Sunday on an
-          expedition to the Titanic in the North Atlantic, was fired after
-          raising concerns about its first-of-a-kind carbon fiber hull and other
-          systems before its maiden voyage, according to a court filing in a
-          2018 lawsuit.
+         {summary}
         </p>
       </div>
     </div>

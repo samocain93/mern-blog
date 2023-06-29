@@ -98,6 +98,10 @@ app.post('/post', uploadMiddleware.single('file'), async (req, res) => {
   }
 });
 
+app.get('/post', async (req, res) => {
+  res.json(await Post.find());
+});
+
 app.listen(PORT, function (err) {
   if (err) console.log(err);
   console.log(`Server listening on PORT: ${PORT} `);
