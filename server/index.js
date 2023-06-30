@@ -20,7 +20,7 @@ const secret = 'secret';
 app.use(cors({ credentials: true, origin: 'http://localhost:3000' }));
 app.use(express.json());
 app.use(cookieParser());
-app.use('/uploads', express.static(__dirname + '/uploads'))
+app.use('/uploads', express.static(__dirname + '/uploads'));
 
 mongoose.connect(process.env.MONGO_URI);
 
@@ -110,6 +110,12 @@ app.get('/post', async (req, res) => {
       .sort({ createdAt: -1 })
       .limit(20)
   );
+});
+
+app.get('/post/:id', async (req, res) => {
+  const { id } = req.params;
+  const post = await Post.findById(id).populate('author', ['username']);
+  res.json(post)
 });
 
 app.listen(PORT, function (err) {

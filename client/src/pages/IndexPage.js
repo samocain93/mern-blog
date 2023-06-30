@@ -12,5 +12,10 @@ export default function IndexPage() {
     });
   }, []);
 
-  return <>{posts.length > 0 && posts.map((post) => <Post {...post} key={post._id} />)}</>;
+  return (
+    <>
+      {posts.length > 0 &&
+        posts.map((post) => <Post {...post} key={post._id} />)}
+    </>
+  );
 }
