@@ -197,3 +197,32 @@ form.register h1 {
   color: rgb(116, 114, 114);
   font-weight: bold;
 }
+
+.edit-row {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.edit-btn {
+  background-color: #333;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 10px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.edit-btn:hover {
+  cursor:pointer;
+  background-color: rgb(96, 96, 96);
+}
+
+.edit-row a {
+  text-decoration: none;
+}
+
+.icon {
+  height: 20px;
+}

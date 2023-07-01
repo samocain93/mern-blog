@@ -2,6 +2,7 @@ import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import { useState } from 'react';
 import { Navigate } from 'react-router-dom';
+import Editor from '../components/Editor';
 
 const modules = {
   toolbar: [
@@ -83,12 +84,7 @@ export default function CreatePost() {
         }}
       ></input>
       <input type='file' onChange={(e) => setFiles(e.target.files)}></input>
-      <ReactQuill
-        value={content}
-        onChange={(newValue) => setContent(newValue)}
-        modules={modules}
-        formats={formats}
-      />
+      <Editor value={content} onChange={setContent}/>
       <button className='create-btn'>Create Post</button>
     </form>
   );
