@@ -10,7 +10,6 @@ body {
 
 img {
   max-width: 100%;
-
 }
 
 main {
@@ -65,7 +64,7 @@ header nav {
 
 @media screen and (min-width: 700px) {
   .post {
-    grid-template-columns: .9fr 1.1fr;
+    grid-template-columns: 0.9fr 1.1fr;
   }
 }
 
@@ -142,7 +141,6 @@ button:hover {
   background-color: rgb(198, 193, 193);
 }
 
-
 form.login h1,
 form.register h1 {
   text-align: center;
@@ -179,11 +177,12 @@ form.register h1 {
   max-width: 80%;
   text-align: center;
   margin: 0 auto;
+  line-height: 1.5rem;
 }
 
 .post-page time {
   color: #aaa;
-  font-size: .8rem;
+  font-size: 0.8rem;
   text-align: center;
   display: block;
   margin: 0 auto;
@@ -194,7 +193,7 @@ form.register h1 {
   margin: 0 auto;
   text-align: center;
   margin-bottom: 20px;
-  font-size: .9rem;
+  font-size: 0.9rem;
   color: rgb(116, 114, 114);
   font-weight: bold;
 }
