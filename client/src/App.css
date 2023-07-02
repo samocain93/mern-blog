@@ -12,6 +12,11 @@ img {
   max-width: 100%;
 }
 
+a,
+button {
+  cursor: pointer;
+}
+
 main {
   padding: 10px;
   max-width: 960px;
@@ -85,6 +90,10 @@ header nav {
   font-weight: bold;
   display: flex;
   gap: 5px;
+}
+
+.hello {
+  font-weight: bold;
 }
 
 .author {

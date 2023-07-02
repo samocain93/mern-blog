@@ -32,6 +32,7 @@ export default function Header() {
       <nav>
         {username && (
           <>
+          <span className='hello'>Hello, {username}</span>
             <Link to='/create'>Create Post</Link>
             <a onClick={handleLogout}>Logout</a>
           </>
