@@ -115,7 +115,42 @@ app.get('/post', async (req, res) => {
 app.get('/post/:id', async (req, res) => {
   const { id } = req.params;
   const post = await Post.findById(id).populate('author', ['username']);
-  res.json(post)
+  res.json(post);
+});
+
+app.put('/post', uploadMiddleware.single('file'), async (req, res) => {
+  let newPath = null;
+  if (req.file) {
+    const { originalname, path } = req.file;
+    const parts = originalname.split('.');
+    const ext = parts[parts.length - 1];
+    newPath = path + '.' + ext;
+    fs.renameSync(path, newPath);
+  }
+
+  const { token } = req.cookies;
+
+  jwt.verify(token, secret, {}, async (err, info) => {
+    if (err) throw err;
+    // res.json(info);
+
+    const { id, title, summary, content } = req.body;
+    const postDoc = await Post.findById(id);
+    const isAuthor = JSON.stringify(postDoc.author) === JSON.stringify(info.id);
+    if (!isAuthor) {
+      return res
+        .status(400)
+        .json('You do not have editing capabilities for this post');
+    }
+    await postDoc.updateOne({
+      title,
+      summary,
+      content,
+      image: newPath ? newPath : postDoc.image,
+    });
+
+    res.json(postDoc);
+  });
 });
 
 app.listen(PORT, function (err) {
